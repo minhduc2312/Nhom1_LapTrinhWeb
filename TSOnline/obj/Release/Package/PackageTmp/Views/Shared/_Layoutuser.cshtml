@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>TRÀ SỮA TT - Thịnh và Cường </title>
+    <meta name="keywords" content="TRÀ SỮA TT, Thịnh và Cường " />
+    <link href="~/Content/templatemo_style.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript">
+function clearText(field)
+{
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
+    </script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=1980253788957549&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <div id="templatemo_container_wrapper">
+        <div id="templatemo_container">
+            <div id="templatemo_banner">
+                <div id="site_title">
+               @*<h1><a href="http://localhost:55131/TraSua/Index" target="_parent">TRÀ SỮA TT</a></h1>*@     
+                </div>
+
+                
+            <!-- end of menu -->
+
+            </div> <!-- end of banner -->
+
+            <div id="templatemo_content">
+
+                <div id="side_column">                        
+                    <div class="side_column_box">
+
+                        <h2><span></span>Thức uống tiêu biểu</h2>
+
+                        <div class="side_column_box_content">
+                            <div class="news_section">
+                                
+                                <h2><a href="#">Trà Thanos - 50.000 VNĐ</a></h2>
+                                <a href="#"><img class="image_wrapper" src="~/images/7-loai-tra-sua-8.jpg" width="230" alt="thanos" /></a>
+                                
+                            </div>
+
+                            <div class="news_section">
+                                <h2><a href="#">Trà Batman - 40.000 VNĐ</a></h2>
+                                <a href="#"><img class="image_wrapper" src="~/images/hong-tra-tran-chau-173012-1466605784.jpg" width="230" alt="batman" /></a>                              
+                            </div>
+
+                            <div class="news_section">
+                                <h2><a href="#">Trà sữa đặt biệt - 690.000 VNĐ</a></h2>
+                                <a href="#"><img class="image_wrapper" src="~/images/ty.jpg" width="230" alt="batman" /></a>
+                            </div>
+
+                            <div class="news_section">
+                                <h2><a href="#">Trà sữa lọ - 40.000 VNĐ</a></h2>
+                                <a href="#"><img class="image_wrapper" src="~/images/tra sua 4.jpg" width="230" alt="batman" /></a>
+                            </div>
+
+                            <div class="news_section">
+                                <h2><a href="#">Trà cà phê - 80.000 VNĐ</a></h2>
+                                <a href="#"><img class="image_wrapper" src="~/images/tra sua 6.jpg" width="230" alt="batman" /></a>
+                            </div>
+                            
+                            <div class="news_section">
+                                <h2><a href="#">Trà Đào - 70.000 VNĐ</a></h2>
+                                <a href="#"><img class="image_wrapper" src="~/images/tradao 1.jpg" width="230" alt="batman" /></a>
+                            </div>
+
+                            <div class="news_section">
+                                <h2><a href="#">Trà Chanh - 100.000 VNĐ</a></h2>
+                                <a href="#"><img class="image_wrapper" src="~/images/tranh chanh.jpg" width="230" alt="batman" /></a>
+                            </div>
+                        </div>
+
+                        <div class="bottom"></div>
+                    </div>
+
+
+                </div> <!-- end of side column -->
+
+                <div id="main_column">
+
+                    <div class="main_column_section">
+
+                        <div>
+                            <div id="templatemo_menu">
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index","TraSua")"
+                                          <span>Trang Chủ</span></a> </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Dangnhap","Nguoidung")">
+                                            <span>Đăng Nhập</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Dangky","Nguoidung")">
+                                            <span>Đăng Ký</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("GioHang","GioHang")"
+                                             <span>Giỏ Hàng</span>
+                                       </a>
+                                    </li>
+                                </ul>
+                            </div> 
+                            @RenderBody()
+                            
+                        </div>
+                        <div class="cleaner"></div>
+                    </div>
+
+
+
+                    <div class="cleaner"></div>
+                </div> <!-- end of main column -->
+
+                <div class="cleaner"></div>
+            </div> <!-- end of content -->
+
+            <div id="templatemo_footer">
+
+                <div id="templatemo_footer_bar">
+
+                     <ul class="footer_menu">
+                        <li><a href="#" class="current">Trang chủ</a></li>
+                        <li><a href="#" target="_parent">Thực đơn</a></li>
+                     
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#" target="_blank">Liên hệ</a></li>
+                    </ul>
+
+                    Copyright © 2018  | <a href="http://localhost:55131/TraSua/Index" target="_parent">Trà sữa TT</a> by <a >Thịnh và Cường</a>
+
+                </div>
+
+            </div> <!-- end of footer -->
+
+        </div> <!-- end of container -->
+    </div> <!-- end of container wrapper -->
+</body>
+</html>

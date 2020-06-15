@@ -1,0 +1,52 @@
+﻿@using TSOnline.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<TRASUA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="row">
+    @foreach (var ts in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details", "TraSua", new { id = ts.MaTS})">
+                    <img alt="@ts.TenTS" src="~/images/@ts.Anhbia" width="600" />
+                    <div>
+                        <br />
+                        <h4 style="text-align:center">
+                            @ts.TenTS
+                        </h4>
+                        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+                        <p></p>
+                    </div>
+                    <div class="ratings">
+                        
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star">
+                            </span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                  </a>
+            </div>
+        </div>
+    }
+</div>
+@*tạo liên kết các trang*@
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+     @Html.PagedListPager(Model,page=>Url.Action("Index",new { page=page}))
+</div>
+<style>
+    .MenuTrang li{
+        display:inline;
+        font-size:25px;
+        margin-right:8px;
+        color:aqua;
+    }
+</style>
