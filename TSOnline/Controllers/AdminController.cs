@@ -62,10 +62,12 @@ namespace TSOnline.Controllers
         {
             if (Session["Taikhoanadmin"] != null)
             {
+                TRASUA x = new TRASUA();
+
                 //Dua du lieu vao dropdownList
                 //Lay ds tu tabke chu de, sắp xep tang dan trheo ten chu de, chon lay gia tri Ma CD, hien thi thi Tenchude
                 ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
-                return View();
+                return View(x);
             }
             else if (Session["Taikhoan"] != null)
             {
@@ -78,8 +80,8 @@ namespace TSOnline.Controllers
             
         }
         [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult themmoits(TRASUA ts,HttpPostedFileBase fileupload)
+
+        public ActionResult Themmoits(TRASUA ts,HttpPostedFileBase fileupload)
         {            
                 //Dua du lieu vao dropdownload
                 ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
@@ -125,7 +127,7 @@ namespace TSOnline.Controllers
                     Response.StatusCode = 404;
                     return null;
                 }
-                return PartialView(ts);
+                return View(ts);
             }
             else if (Session["Taikhoan"] != null)
             {
@@ -177,7 +179,7 @@ namespace TSOnline.Controllers
                 if(ctdh != null)
                 {
                     ViewBag.ThongBao = "Không thể xoá sản phẩm này vì còn tồn tại ở chi tiết đặt hàng";
-                    return PartialView();
+                    return View();
                 }
                 else
                 {
@@ -208,7 +210,7 @@ namespace TSOnline.Controllers
                     Response.StatusCode = 404;
                     return null;
                 }
-                ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai", ts.MaLoai);
+                ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
                 return View(ts);
             }
             else if (Session["Taikhoan"] != null)
@@ -224,56 +226,61 @@ namespace TSOnline.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(TRASUA ts, HttpPostedFileBase fileupload)
+        public ActionResult Edit(TRASUA ts)
         {
             //Dua du lieu vao dropdownload
-            ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai", ts.MaLoai);
-
-            //Kiem tra duong dan file
-            if (fileupload == null)
+            var anhbia = Request.Form["Anhbia1"];
+            if (ModelState.IsValid)
             {
-                ViewBag.Thongbao = "Vui lòng chọn ảnh bìa";
-                return View();
-            }
-            //Them vao CSDL
-            else
-            {
-                if (ModelState.IsValid)
+                ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
+                HttpPostedFileBase fileName = Request.Files["Anhbia"];
+                //Luu ten fie, luu y bo sung thu vien using System.IO;
+                if(fileName != null && fileName.FileName != "")
                 {
-                    //Luu ten fie, luu y bo sung thu vien using System.IO;
-                    var fileName = Path.GetFileName(fileupload.FileName);
-                    //Luu duong dan cua file
-                    var path = Path.Combine(Server.MapPath("~/img/"), fileName);
-                    //Kiem tra hình anh ton tai chua?
-                    if (System.IO.File.Exists(path))
-                    {
-                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
-                        return View();
-                    }
-                        
-                    else
-                    {
-                        //Luu hinh anh vao duong dan
-                        fileupload.SaveAs(path);
-                    }
-                    ts.Anhbia = fileName;
-                    //Luu vao CSDL   
-                    UpdateModel(ts);
-                    data.SubmitChanges();
-
+                    string serverPath = HttpContext.Server.MapPath("~/img/");
+                    string filePath = serverPath + fileName.FileName;
+                    fileName.SaveAs(filePath);
+                    ts.Anhbia = fileName.FileName;
                 }
+                ts.TenTS = Request.Form["TenTS"];
+                ts.Giaban = long.Parse(Request.Form["Giaban"]);
+                ts.MaLoai = int.Parse(Request.Form["MaLoai"]);
+                if (ts.Anhbia == null) {
+                    ts.Anhbia = anhbia;
+                }
+                //Luu vao CSDL   
+                UpdateModel(ts);
+                data.SubmitChanges();
                 return RedirectToAction("TraSua");
-            }
+            }           
+            return View(ts);          
+            
+            
         }
         public ActionResult LoadDoanhThu(DateTime ngaybatdau,DateTime ngayketthuc)
         {
             
             return PartialView();
         }
-        public ActionResult KhachHang()
+        public ActionResult KhachHang(int ? page)
         {
-            var list_kh = data.KHACHHANGs.ToList();
-            return View(list_kh);
+            if (Session["Taikhoanadmin"] != null)
+            {
+                var list_kh = data.KHACHHANGs.ToList();
+                int pageNumber = (page ?? 1);
+                int pageSize = 6;
+                //return View(data.TRASUAs.ToList());
+                return View(list_kh.ToPagedList(pageNumber, pageSize));
+            }
+            else if (Session["Taikhoan"] != null)
+            {
+                return RedirectToAction("Index", "TraSua");
+            }
+            else
+            {
+                return RedirectToAction("DangNhap", "NguoiDung");
+            }
+            
         }
 
     }

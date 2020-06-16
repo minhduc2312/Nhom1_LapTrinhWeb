@@ -6,14 +6,11 @@
     ViewBag.Title = "TraSua";
 
 }
-@if (Session["Taikhoanadmin"] != null)
-{
+
     <div class="container">
         <h2>Danh Sách Trà Sữa</h2>
-
-        <p>
-            @Html.ActionLink("Create New", "themmoits")
-        </p>
+        
+        <a class="btn_1" href="@Url.Action("Themmoits","Admin")">Thêm Mới</a>
         <table class="table">
             <tr>
                 <th style="width:200px">  Tên trà sữa </th>
@@ -59,18 +56,4 @@
             }
         </style>
     </div>
-}
-else if (Session["Taikhoan"] != null)
-{
-    @section scripts{
-        <script>
-            alert("Bạn không phải là Admin");
-        </script>
-    }
-    @Html.Action("Index", "TraSua")
-}
-else
-{
-    @Html.Action("DangNhap", "NguoiDung")
-}
 

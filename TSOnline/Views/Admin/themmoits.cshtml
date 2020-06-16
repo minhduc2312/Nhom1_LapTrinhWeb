@@ -1,22 +1,19 @@
 ﻿@model TSOnline.Models.TRASUA
 
 @{
-    ViewBag.Title = "themmoits";
+    ViewBag.Title = "Thêm Mới";
 
 }
 
-
-@if (Session["Taikhoanadmin"] != null)
-{
 <div class="container" style="width: 30%;margin-top:30px;padding-right:0px">
     <h2 style="text-align:center">THÊM MỚI TRÀ SỮA</h2>
-    @using (Html.BeginForm("themmoits", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-    {       
+    @using (Html.BeginForm("Themmoits", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
         <div class="form-horizontal">
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.TenTS, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.TenTS, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-12">
                     @Html.EditorFor(model => model.TenTS, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.TenTS, "", new { @class = "text-danger" })
@@ -24,7 +21,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Giaban, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Giaban, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-12">
                     @Html.EditorFor(model => model.Giaban, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
@@ -32,17 +29,16 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-12">
-                    <input type="file" name="fileupload" />
-                    <img src="@Url.Content("~/img/"+ Model.Anhbia)" width="100" height="100" />
+                    <input type="file" name="fileupload" />                    
                     @ViewBag.Thongbao
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-12">
+                @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12"h>
                     @Html.DropDownList("MaLoai")
                 </div>
             </div>
@@ -59,22 +55,6 @@
         @Html.ActionLink("Back to List", "Index")
     </div>
 </div>
-    
-}
 
-else if (Session["Taikhoan"] != null)
-{
-    @section scripts{
-        <script>
-            alert("Bạn không phải là Admin");
-            @Html.Action("Index", "TraSua")
-        </script>
-    }
-    
-}
-else
-{
-    @Html.Action("DangNhap", "NguoiDung")
-}
 
 

@@ -485,7 +485,6 @@
     <Content Include="style.scss" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\TraSua.cshtml" />
-    <Content Include="Views\Admin\ThemMoiTS.cshtml" />
     <Content Include="Views\Admin\Detail.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
@@ -500,6 +499,8 @@
     <Content Include="Views\Shared\_LayoutCategory.cshtml" />
     <Content Include="Views\TraSua\List_Banner.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Themmoits.cshtml" />
+    <Content Include="Views\Admin\KhachHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -355,7 +355,6 @@ C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\bin\Microsoft.Owin.Security.
 C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.csprojAssemblyReference.cache
 C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.csproj.CoreCompileInputs.cache
 C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.csproj.CopyComplete
 C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.dll
@@ -454,3 +453,4 @@ C:\Users\minhd\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.csproj.Copy
 C:\Users\minhd\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.dll
 C:\Users\minhd\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.pdb
 C:\Users\minhd\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.csprojAssemblyReference.cache
+C:\Users\MinhDuc\Desktop\Nhom1_LapTrinhWeb\TSOnline\obj\Debug\TSOnline.csprojAssemblyReference.cache
