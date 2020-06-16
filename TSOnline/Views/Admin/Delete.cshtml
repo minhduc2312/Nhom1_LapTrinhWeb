@@ -2,56 +2,55 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<div class="container">
+    <h2>Xóa thông tin của trà sữa này !</h2>
 
-<h2>Xóa thông tin của trà sữa này !</h2>
+    <h3>Xác nhận</h3>
+    <div>
 
-<h3>Xác nhận</h3>
-<div>
-    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Tên trà sữa
-        </dt>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên trà sữa
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenTS)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TenTS)
+                </dd>
 
-        <dt>
-            Giá bán
-        </dt>
+                <dt>
+                    Giá bán
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Giaban)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Giaban)
+                </dd>
 
-        <dt>
-            Ảnh minh họa
-        </dt>
+                <dt>
+                    Ảnh minh họa
+                </dt>
 
-        <dd>
-            <img src="@Url.Content("~/images/"+ Model.Anhbia)" width="250" height="250" />
-        </dd>
+                <dd>
+                    <img src="@Url.Content("~/img/"+ Model.Anhbia)" width="250" height="250" />
+                </dd>
 
-        <dt>
-            Mã loại
-        </dt>
+            </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.LOAI.MaLoai)
-        </dd>
 
-    </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "TraSua","Admin")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn_1" /> 
+                <a class="btn_1" href="@Url.Action("TraSua","Admin")">Trở Lại Danh Sách</a>
+            </div>
+        }
+    </div>
 </div>
+
+
+
+
+

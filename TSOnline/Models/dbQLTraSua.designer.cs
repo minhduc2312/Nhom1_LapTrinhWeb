@@ -154,10 +154,11 @@ namespace TSOnline.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DoanhThu")]
-		public ISingleResult<DoanhThuResult> DoanhThu([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> ngaybatdau, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> ngayketthuc)
+		public int DoanhThu([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> ngaybatdau, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> ngayketthuc, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DoanhThu", DbType="BigInt")] ref System.Nullable<long> doanhThu)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ngaybatdau, ngayketthuc);
-			return ((ISingleResult<DoanhThuResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ngaybatdau, ngayketthuc, doanhThu);
+			doanhThu = ((System.Nullable<long>)(result.GetParameterValue(2)));
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -1077,6 +1078,7 @@ namespace TSOnline.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenTS", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+        [DisplayName("Tên Trà Sữa")]
 		public string TenTS
 		{
 			get
@@ -1097,6 +1099,7 @@ namespace TSOnline.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Giaban", DbType="Decimal(18,0)")]
+        [DisplayName("Giá Bán")]
 		public System.Nullable<decimal> Giaban
 		{
 			get
@@ -1117,6 +1120,7 @@ namespace TSOnline.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Anhbia", DbType="VarChar(50)")]
+        [DisplayName("Ảnh bìa")]
 		public string Anhbia
 		{
 			get
@@ -1137,6 +1141,7 @@ namespace TSOnline.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLoai", DbType="Int")]
+        [DisplayName("Loại Trà Sữa")]
 		public System.Nullable<int> MaLoai
 		{
 			get
@@ -1737,32 +1742,6 @@ namespace TSOnline.Models
 				if ((this._TenLoai != value))
 				{
 					this._TenLoai = value;
-				}
-			}
-		}
-	}
-	
-	public partial class DoanhThuResult
-	{
-		
-		private System.Nullable<decimal> _DoanhThu;
-		
-		public DoanhThuResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoanhThu", DbType="Decimal(38,0)")]
-		public System.Nullable<decimal> DoanhThu
-		{
-			get
-			{
-				return this._DoanhThu;
-			}
-			set
-			{
-				if ((this._DoanhThu != value))
-				{
-					this._DoanhThu = value;
 				}
 			}
 		}

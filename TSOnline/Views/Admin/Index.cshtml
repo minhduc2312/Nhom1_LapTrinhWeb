@@ -2,11 +2,9 @@
 
 @{
     ViewBag.Title = "Admin";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-@if (Session["Taikhoanadmin"] != null)
-{
     <h2 class="text-center">Trang Admin</h2>
     <section class="feature_part padding_top">
         <div class="container">
@@ -32,17 +30,5 @@
         </div>
     </section>
 
-}
-else if(Session["Taikhoan"] != null)
-{
-    @section scripts{
-        <script>
-            alert("Bạn không phải là Admin");
-        </script>
-        }
-}
-else
-{
-    @Html.Action("DangNhap", "NguoiDung")
-}
+
 

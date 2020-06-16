@@ -91,8 +91,7 @@
   <Function Name="dbo.DoanhThu" Method="DoanhThu">
     <Parameter Name="ngaybatdau" Type="System.DateTime" DbType="Date" />
     <Parameter Name="ngayketthuc" Type="System.DateTime" DbType="Date" />
-    <ElementType Name="DoanhThuResult">
-      <Column Name="DoanhThu" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
+    <Parameter Name="DoanhThu" Parameter="doanhThu" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

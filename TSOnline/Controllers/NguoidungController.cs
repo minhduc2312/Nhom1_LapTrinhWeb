@@ -32,53 +32,25 @@ namespace TSOnline.Controllers
             var email = collection["Email"];
             var dienthoai = collection["Dienthoai"];
             var ngaysinh =String.Format("{0:MM/dd/yyyy}",collection["Ngaysinh"]);
-            if (String.IsNullOrEmpty(hoten))
-            {
-                ViewData["Loi1"] = "Họ tên khách hàng không được để trống";
-            }
-            else if (String.IsNullOrEmpty(tendn))
-            {
-                ViewData["Loi2"] = "Phải nhập tên đăng nhập";
-            }
-            else if (String.IsNullOrEmpty(matkhau))
-            {
-                ViewData["Loi3"] = "Phải nhập mật khẩu";
-            }
-            else if (String.IsNullOrEmpty(matkhaunhaplai))
-            {
-                ViewData["Loi4"] = "Phải nhập lại mật khẩu";
-            }
-
-
-            if (String.IsNullOrEmpty(email))
-            {
-                ViewData["Loi5"] = "Email không được bỏ trống";
-            }
-
-            if (String.IsNullOrEmpty(dienthoai))
-            {
-                ViewData["Loi6"] = "Phải nhập điện thoai";
-            }
-            else
-            {
+            
+           
                 //Gán giá trị cho đối tượng được tạo mới (kh)
-                kh.HoTen = hoten;
-                kh.Taikhoan = tendn;
-                kh.Matkhau = matkhau;
-                kh.Email = email;
-                kh.DiachiKH = diachi;
-                kh.DienthoaiKH = dienthoai;
-                kh.Ngaysinh =DateTime.Parse(ngaysinh);
-                data.KHACHHANGs.InsertOnSubmit(kh);
-                data.SubmitChanges();
-                return RedirectToAction("Dangnhap");
-            }
-            return this.Dangky();
+            kh.HoTen = hoten;
+            kh.Taikhoan = tendn;
+            kh.Matkhau = matkhau;
+            kh.Email = email;
+            kh.DiachiKH = diachi;
+            kh.DienthoaiKH = dienthoai;
+            kh.Ngaysinh =DateTime.Parse(ngaysinh);
+            data.KHACHHANGs.InsertOnSubmit(kh);
+            data.SubmitChanges();
+            return RedirectToAction("Dangnhap");
+            
         }
         [HttpGet]
         public ActionResult Dangnhap()
         {
-            return View();
+            return PartialView();
         }
 
         [HttpPost]
@@ -118,12 +90,13 @@ namespace TSOnline.Controllers
                     else
                         ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
                 }
-            return View();
+            return PartialView();
         }
 
         public ActionResult DangXuat()
         {
             Session["Taikhoan"] = null;
+            Session["Taikhoanadmin"] = null;
             return Redirect("/");
         }
     }

@@ -139,8 +139,12 @@ namespace MvcBookStore.Controllers
                 return RedirectToAction("Index", "TraSua");
             }
 
-            //Lay gio hang tu Session
+            //Lay gio hang tu Session            
             List<GioHang> lstGiohang = Laygiohang();
+            if (lstGiohang.Count == 0)
+            {
+                return RedirectToAction("Index", "TraSua");
+            }
             ViewBag.Tongsoluong = TongSoLuong();
             ViewBag.Tongtien = TongTien();
 

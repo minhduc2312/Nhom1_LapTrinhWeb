@@ -2,59 +2,79 @@
 
 @{
     ViewBag.Title = "themmoits";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-<h2>Thêm mới trà sữa</h2>
 
-@using (Html.BeginForm("themmoits","Admin",FormMethod.Post,new {@enctype="multipart/form-data" }))
+@if (Session["Taikhoanadmin"] != null)
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TRASUA</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenTS, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenTS, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenTS, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="container" style="width: 30%;margin-top:30px;padding-right:0px">
+    <h2 style="text-align:center">THÊM MỚI TRÀ SỮA</h2>
+    @using (Html.BeginForm("themmoits", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {       
+        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Giaban, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Giaban, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenTS, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.TenTS, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenTS, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input  type="file" name="fileupload"/>
-                @*thông báo chung*@
-                @ViewBag.Thongbao
+            <div class="form-group">
+                @Html.LabelFor(model => model.Giaban, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Giaban, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaLoai")
+            <div class="form-group">
+                @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    <input type="file" name="fileupload" />
+                    <img src="@Url.Content("~/img/"+ Model.Anhbia)" width="100" height="100" />
+                    @ViewBag.Thongbao
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm mới" class="btn btn-default" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownList("MaLoai")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Thêm mới" class="btn_1" />
+                </div>
             </div>
         </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
+</div>
+    
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+else if (Session["Taikhoan"] != null)
+{
+    @section scripts{
+        <script>
+            alert("Bạn không phải là Admin");
+            @Html.Action("Index", "TraSua")
+        </script>
+    }
+    
+}
+else
+{
+    @Html.Action("DangNhap", "NguoiDung")
+}
+
+

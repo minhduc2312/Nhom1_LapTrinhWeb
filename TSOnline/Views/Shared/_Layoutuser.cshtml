@@ -53,7 +53,7 @@
                                     <a class="nav-link" href="/">Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Shop
                                     </a>
@@ -62,31 +62,27 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_3"
                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         pages
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> login</a>
-                                        <a class="dropdown-item" href="tracking.html">tracking</a>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
-                                    </div>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">                                         
+                                        <a class="dropdown-item" href="@Url.Action("GioHang","GioHang")">Giỏ hàng</a>
+                                        <a class="dropdown-item" href="@Url.Action("DatHang","GioHang")">Thanh Toán</a>                                        
+                                   </div>
                                 </li>
                                 @if (Session["Taikhoanadmin"] != null)
                                 {
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            blog
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                            <a class="dropdown-item" href="blog.html"> blog</a>
-                                            <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                        </div>
-                                    </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
+                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Quản Lý
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="@Url.Action("TraSua","Admin")">Quản Lý Trà Sữa</a>
+                                        <a class="dropdown-item" href="@Url.Action("KhachHang","Admin")">Quản Lý Khách Hàng</a>
+                                    </div>
+                                </li>
                                 }
                                 <li class="nav-item" style="margin-left: 40px;display: flex;">
                                     @Html.Partial("_LoginPartial")
@@ -103,15 +99,7 @@
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here" />
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
+        
     </header>
     <section class="banner_part">
         <div class="container">

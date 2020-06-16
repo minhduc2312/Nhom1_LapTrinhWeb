@@ -1,13 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "Dangnhap";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
 { 
 <div class="container" style="width: 35%">
     <!-- Default form register -->
-    <form method="post" class="text-center border border-light p-5" action="@Url.Action("Login","Admin")">
+    <form method="post" class="text-center border border-light p-5" action="@Url.Action("DangNhap","NguoiDung")">
         @Html.ValidationSummary(true)
         <p class="h4 mb-4">Sign in</p>
         <!-- E-mail -->

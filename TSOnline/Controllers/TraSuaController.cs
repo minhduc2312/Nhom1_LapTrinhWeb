@@ -35,38 +35,12 @@ namespace TSOnline.Controllers
             var topbanchay = data.topbanchay().ToList();
             foreach (var item in topbanchay)
             {
-                TRASUA ts = data.TRASUAs.Where(a => a.MaTS == item.MaTS).FirstOrDefault();
+                TRASUA ts = data.TRASUAs.Where(a => a.MaTS == item.MaTS).SingleOrDefault();
                 list_banchay.Add(ts);
             }
             return PartialView(list_banchay);
         }
-        /*@model IEnumerable<TSOnline.Models.TRASUA>
-
-@foreach (var item in Model)
-{
-    <div class="single_banner_slider">
-        <div class="row">
-            <div class="col-lg-5 col-md-8">
-                <div class="banner_text">
-                    <div class="banner_text_iner">
-                        <h1>
-                            @item.TenTS
-                        </h1>
-                        <p>
-                            @item.Giaban Đ
-                        </p>
-                        <a href="@Url.Action("Details","TraSua",new {id=item.MaTS})" class="btn_2">Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="banner_img d-none d-lg-block">
-                <img src="~/img/@item.Anhbia" alt="Hình ảnh">
-            </div>
-        </div>
-    </div>
-}
-
-*/
+       
         public ActionResult List_Banner()
         {
             List<LoadBannerResult> list_banner = data.LoadBanner().ToList();

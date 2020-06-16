@@ -475,7 +475,6 @@
     <Content Include="Views\Shared\_Layoutuser.cshtml" />
     <Content Include="Views\TraSua\Index.cshtml" />
     <Content Include="Views\TraSua\Loai.cshtml" />
-    <Content Include="Views\TraSua\ThucDon.cshtml" />
     <Content Include="Views\TraSua\Details.cshtml" />
     <Content Include="Views\Nguoidung\Dangky.cshtml" />
     <Content Include="Views\Nguoidung\Dangnhap.cshtml" />
@@ -484,14 +483,12 @@
     <Content Include="Views\Giohang\DatHang.cshtml" />
     <Content Include="Views\Giohang\Xacnhandonhang.cshtml" />
     <Content Include="style.scss" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\TraSua.cshtml" />
-    <Content Include="Views\Admin\themmoits.cshtml" />
+    <Content Include="Views\Admin\ThemMoiTS.cshtml" />
     <Content Include="Views\Admin\Detail.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
-    <Content Include="Views\Admin\sua.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\TraSua\DS_Loai.cshtml" />
@@ -502,6 +499,7 @@
     <Content Include="Views\Category\Category_Partialview.cshtml" />
     <Content Include="Views\Shared\_LayoutCategory.cshtml" />
     <Content Include="Views\TraSua\List_Banner.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
