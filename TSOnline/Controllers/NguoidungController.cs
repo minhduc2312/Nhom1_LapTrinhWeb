@@ -80,9 +80,14 @@ namespace TSOnline.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Dangnhap(FormCollection collection)
         {
+            if(Session["Taikhoan"] != null)
+            {
+                return Redirect("/");
+            }
             // Gán các giá trị người dùng nhập liệu cho các biến 
             var tendn = collection["TenDN"];
             var matkhau = collection["Matkhau"];
@@ -98,7 +103,13 @@ namespace TSOnline.Controllers
                 {
                     //Gán giá trị cho đối tượng được tạo mới (kh)
                     KHACHHANG kh = data.KHACHHANGs.SingleOrDefault(n => n.Taikhoan == tendn && n.Matkhau == matkhau);
-                    if (kh != null)
+                    Admin ad = data.Admins.SingleOrDefault(n => n.UserAdmin == tendn && n.PassAdmin == matkhau);
+                if (ad != null)
+                {
+                    // ViewBag.Thongbao = "Chúc mừng đăng nhập thành công";
+                    Session["Taikhoanadmin"] = ad;
+                    return RedirectToAction("Index", "Admin");
+                }else if (kh != null)
                     {
                         //ViewBag.Thongbao = "Chúc mừng đăng nhập thành công";
                         Session["Taikhoan"] = kh;
@@ -108,6 +119,12 @@ namespace TSOnline.Controllers
                         ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
                 }
             return View();
+        }
+
+        public ActionResult DangXuat()
+        {
+            Session["Taikhoan"] = null;
+            return Redirect("/");
         }
     }
 

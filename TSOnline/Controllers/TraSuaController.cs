@@ -31,8 +31,14 @@ namespace TSOnline.Controllers
         public ActionResult GetTop()
         {
             //lấy top bán chạy nhất
-            var tsmoi = trasuamoi(10);
-            return PartialView(tsmoi);
+            List<TRASUA> list_banchay = new List<TRASUA>();
+            var topbanchay = data.topbanchay().ToList();
+            foreach (var item in topbanchay)
+            {
+                TRASUA ts = data.TRASUAs.Where(a => a.MaTS == item.MaTS).FirstOrDefault();
+                list_banchay.Add(ts);
+            }
+            return PartialView(list_banchay);
         }
         public ActionResult List_Banner()
         {

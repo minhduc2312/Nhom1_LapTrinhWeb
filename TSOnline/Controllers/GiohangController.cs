@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using TSOnline.Models;
 namespace MvcBookStore.Controllers
 {
@@ -49,7 +50,7 @@ namespace MvcBookStore.Controllers
             List<GioHang> lstGiohang = Laygiohang();
             if (lstGiohang.Count == 0)
             {
-                return RedirectToAction("Index", "BookStore");
+                return RedirectToAction("Index", "TraSua");
             }
             ViewBag.Tongsoluong = TongSoLuong();
             ViewBag.Tongtien = TongTien();
@@ -85,18 +86,18 @@ namespace MvcBookStore.Controllers
             return PartialView();
         }
         //Cap nhat Giỏ hàng
-        public ActionResult CapnhatGiohang(int iMaSP, FormCollection f)
-        {
-
+        public ActionResult CapnhatGiohang(FormCollection f)
+        {           
             //Lay gio hang tu Session
             List<GioHang> lstGiohang = Laygiohang();
             //Kiem tra sach da co trong Session["Giohang"]
-            GioHang sanpham = lstGiohang.SingleOrDefault(n => n.iMaTS == iMaSP);
-            //Neu ton tai thi cho sua Soluong
-            if (sanpham != null)
+            foreach(var sp in lstGiohang)
             {
-                sanpham.iSoluong = int.Parse(f["txtSoluong"].ToString());
-            }
+                //Neu ton tai thi cho sua Soluong
+                sp.iSoluong = int.Parse(f[sp.iMaTS.ToString()].ToString());
+            }          
+            
+            
             return RedirectToAction("GioHang");
         }
         //Xoa Giohang
@@ -154,10 +155,12 @@ namespace MvcBookStore.Controllers
             List<GioHang> gh = Laygiohang();
             ddh.MaKH = kh.MaKH;
             ddh.Ngaydat = DateTime.Now;
-            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["Ngaygiao"]);
+            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["ngaygiao"]);
             ddh.Ngaygiao = DateTime.Parse(ngaygiao);
             ddh.Tinhtranggiaohang = false;
             ddh.Dathanhtoan = false;
+            ddh.SDTNguoiNhan = collection["sodienthoai"];
+            ddh.DiaChiGiao = collection["diachi"];
             data.DONDATHANGs.InsertOnSubmit(ddh);
             data.SubmitChanges();
             //Them chi tiet don hang            
@@ -172,7 +175,8 @@ namespace MvcBookStore.Controllers
             }
             data.SubmitChanges();
             Session["Giohang"] = null;
-            return RedirectToAction("Xacnhandonhang", "Giohang");
+ 
+            return RedirectToAction("Index", "TraSua");
         }
         public ActionResult Xacnhandonhang()
         {

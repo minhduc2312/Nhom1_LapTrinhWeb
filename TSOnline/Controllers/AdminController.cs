@@ -12,18 +12,26 @@ namespace TSOnline.Controllers
 {
     public class AdminController : Controller
     {
-        dbQLTraSuaDataContext db = new dbQLTraSuaDataContext();
+        dbQLTraSuaDataContext data = new dbQLTraSuaDataContext();
         // GET: /Admin/
         public ActionResult Index()
         {
-            return View();
+            //lấy top bán chạy nhất
+            List<TRASUA> list_banchay = new List<TRASUA>();
+            var topbanchay = data.topbanchay().ToList();
+            foreach(var item in topbanchay)
+            {
+                TRASUA ts = data.TRASUAs.Where(a => a.MaTS == item.MaTS).FirstOrDefault();
+                list_banchay.Add(ts);
+            }
+            return View(list_banchay);
         }
         public ActionResult TraSua(int ?page)
         {
             int pageNumber = (page ?? 1);
-            int pageSize = 7 ;
-            //return View(db.TRASUAs.ToList());
-            return View(db.TRASUAs.ToList().OrderBy(n => n.MaTS).ToPagedList(pageNumber, pageSize));    
+            int pageSize = 6 ;
+            //return View(data.TRASUAs.ToList());
+            return View(data.TRASUAs.ToList().OrderBy(n => n.MaTS).ToPagedList(pageNumber, pageSize));    
         }
         [HttpGet]
         public ActionResult Login()
@@ -48,7 +56,7 @@ namespace TSOnline.Controllers
             {
                 //Gán giá trị cho đối tượng được tạo mới (ad)        
 
-                Admin ad = db.Admins.SingleOrDefault(n => n.UserAdmin == tendn && n.PassAdmin == matkhau);
+                Admin ad = data.Admins.SingleOrDefault(n => n.UserAdmin == tendn && n.PassAdmin == matkhau);
                 if (ad != null)
                 {
                     // ViewBag.Thongbao = "Chúc mừng đăng nhập thành công";
@@ -66,8 +74,8 @@ namespace TSOnline.Controllers
         {
             //Dua du lieu vao dropdownList
             //Lay ds tu tabke chu de, sắp xep tang dan trheo ten chu de, chon lay gia tri Ma CD, hien thi thi Tenchude
-            ViewBag.MaLoai = new SelectList(db.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
-           // ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
+            ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
+           // ViewBag.MaNXB = new SelectList(data.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
             return View();
         }
         [HttpPost]
@@ -75,8 +83,8 @@ namespace TSOnline.Controllers
         public ActionResult themmoits(TRASUA ts,HttpPostedFileBase fileupload)
         {
             //Dua du lieu vao dropdownload
-            ViewBag.MaLoai = new SelectList(db.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
-         //   ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
+            ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
+         //   ViewBag.MaNXB = new SelectList(data.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
             //Kiem tra duong dan file
             if (fileupload == null)
             {
@@ -102,15 +110,15 @@ namespace TSOnline.Controllers
                     }
                     ts.Anhbia = fileName;
                     //Luu vao CSDL
-                    db.TRASUAs.InsertOnSubmit(ts);
-                    db.SubmitChanges();
+                    data.TRASUAs.InsertOnSubmit(ts);
+                    data.SubmitChanges();
                 }
                 return RedirectToAction("TraSua");
             }
         }
         public ActionResult Detail(int id)
         {
-            TRASUA ts = db.TRASUAs.SingleOrDefault(n => n.MaTS == id);
+            TRASUA ts = data.TRASUAs.SingleOrDefault(n => n.MaTS == id);
             ViewBag.MaTS = ts.MaTS; 
             if(ts==null)
             { 
@@ -122,7 +130,7 @@ namespace TSOnline.Controllers
         
         public ActionResult Delete(int id)
         {
-            TRASUA ts = db.TRASUAs.SingleOrDefault(n=>n.MaTS==id);
+            TRASUA ts = data.TRASUAs.SingleOrDefault(n=>n.MaTS==id);
             ViewBag.MaTS = ts.MaTS;
             if (ts == null)
             {
@@ -135,27 +143,27 @@ namespace TSOnline.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult xoa(int id)
         {
-            TRASUA ts = db.TRASUAs.SingleOrDefault(n => n.MaTS == id);
+            TRASUA ts = data.TRASUAs.SingleOrDefault(n => n.MaTS == id);
             ViewBag.MaTS = ts.MaTS;
             if (ts == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            db.TRASUAs.DeleteOnSubmit(ts);
-            db.SubmitChanges();
+            data.TRASUAs.DeleteOnSubmit(ts);
+            data.SubmitChanges();
             return RedirectToAction("TraSua");
         }
         [HttpGet]
         public ActionResult sua(int id)
         {
-            TRASUA ts = db.TRASUAs.SingleOrDefault(n => n.MaTS == id);
+            TRASUA ts = data.TRASUAs.SingleOrDefault(n => n.MaTS == id);
             if (ts == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            ViewBag.MaLoai = new SelectList(db.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai", ts.MaLoai);
+            ViewBag.MaLoai = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai", ts.MaLoai);
             return View(ts);
         }
 
@@ -164,8 +172,8 @@ namespace TSOnline.Controllers
         public ActionResult Save(TRASUA ts, HttpPostedFileBase fileupload)
         {
             //Dua du lieu vao dropdownload
-            ViewBag.MaTS = new SelectList(db.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
-          //  ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
+            ViewBag.MaTS = new SelectList(data.LOAIs.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
+          //  ViewBag.MaNXB = new SelectList(data.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
             //Kiem tra duong dan file
             if (fileupload == null)
             {
@@ -192,7 +200,7 @@ namespace TSOnline.Controllers
                     ts.Anhbia = fileName;
                     //Luu vao CSDL   
                     UpdateModel(ts);
-                    db.SubmitChanges();
+                    data.SubmitChanges();
 
                 }
                 return RedirectToAction("TraSua");

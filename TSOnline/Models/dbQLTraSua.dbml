@@ -23,8 +23,10 @@
       <Column Name="Dathanhtoan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Tinhtranggiaohang" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Ngaydat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Ngaygiao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Ngaygiao" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiaChiGiao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDTNguoiNhan" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
       <Association Name="DONDATHANG_CHITIETDONTHANG" Member="CHITIETDONTHANGs" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="CHITIETDONTHANG" />
       <Association Name="KHACHHANG_DONDATHANG" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
@@ -33,7 +35,7 @@
     <Type Name="KHACHHANG">
       <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Taikhoan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Taikhoan" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Matkhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="DiachiKH" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
@@ -60,4 +62,10 @@
       <Association Name="LOAI_TRASUA" Member="LOAI" ThisKey="MaLoai" OtherKey="MaLoai" Type="LOAI" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.topbanchay" Method="topbanchay">
+    <ElementType Name="topbanchayResult">
+      <Column Name="MaTS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tong so luong]" Member="Tong_so_luong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

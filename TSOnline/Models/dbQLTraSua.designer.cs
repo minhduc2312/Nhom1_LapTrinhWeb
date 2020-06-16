@@ -127,6 +127,13 @@ namespace TSOnline.Models
 				return this.GetTable<TRASUA>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.topbanchay")]
+		public ISingleResult<topbanchayResult> topbanchay()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<topbanchayResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Admin")]
@@ -469,9 +476,13 @@ namespace TSOnline.Models
 		
 		private System.Nullable<System.DateTime> _Ngaydat;
 		
-		private System.Nullable<System.DateTime> _Ngaygiao;
+		private System.DateTime _Ngaygiao;
 		
 		private System.Nullable<int> _MaKH;
+		
+		private string _DiaChiGiao;
+		
+		private string _SDTNguoiNhan;
 		
 		private EntitySet<CHITIETDONTHANG> _CHITIETDONTHANGs;
 		
@@ -489,10 +500,14 @@ namespace TSOnline.Models
     partial void OnTinhtranggiaohangChanged();
     partial void OnNgaydatChanging(System.Nullable<System.DateTime> value);
     partial void OnNgaydatChanged();
-    partial void OnNgaygiaoChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgaygiaoChanging(System.DateTime value);
     partial void OnNgaygiaoChanged();
     partial void OnMaKHChanging(System.Nullable<int> value);
     partial void OnMaKHChanged();
+    partial void OnDiaChiGiaoChanging(string value);
+    partial void OnDiaChiGiaoChanged();
+    partial void OnSDTNguoiNhanChanging(string value);
+    partial void OnSDTNguoiNhanChanged();
     #endregion
 		
 		public DONDATHANG()
@@ -582,8 +597,8 @@ namespace TSOnline.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngaygiao", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Ngaygiao
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngaygiao", DbType="DateTime NOT NULL")]
+		public System.DateTime Ngaygiao
 		{
 			get
 			{
@@ -622,6 +637,46 @@ namespace TSOnline.Models
 					this._MaKH = value;
 					this.SendPropertyChanged("MaKH");
 					this.OnMaKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChiGiao", DbType="NVarChar(50)")]
+		public string DiaChiGiao
+		{
+			get
+			{
+				return this._DiaChiGiao;
+			}
+			set
+			{
+				if ((this._DiaChiGiao != value))
+				{
+					this.OnDiaChiGiaoChanging(value);
+					this.SendPropertyChanging();
+					this._DiaChiGiao = value;
+					this.SendPropertyChanged("DiaChiGiao");
+					this.OnDiaChiGiaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDTNguoiNhan", DbType="VarChar(12)")]
+		public string SDTNguoiNhan
+		{
+			get
+			{
+				return this._SDTNguoiNhan;
+			}
+			set
+			{
+				if ((this._SDTNguoiNhan != value))
+				{
+					this.OnSDTNguoiNhanChanging(value);
+					this.SendPropertyChanging();
+					this._SDTNguoiNhan = value;
+					this.SendPropertyChanged("SDTNguoiNhan");
+					this.OnSDTNguoiNhanChanged();
 				}
 			}
 		}
@@ -798,7 +853,7 @@ namespace TSOnline.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Taikhoan", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Taikhoan", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Taikhoan
 		{
 			get
@@ -1174,7 +1229,7 @@ namespace TSOnline.Models
 				{
 					this.OnGiabanChanging(value);
 					this.SendPropertyChanging();
-                    this._Giaban = value;
+					this._Giaban = value;
 					this.SendPropertyChanged("Giaban");
 					this.OnGiabanChanged();
 				}
@@ -1302,6 +1357,50 @@ namespace TSOnline.Models
 		{
 			this.SendPropertyChanging();
 			entity.TRASUA = null;
+		}
+	}
+	
+	public partial class topbanchayResult
+	{
+		
+		private int _MaTS;
+		
+		private System.Nullable<int> _Tong_so_luong;
+		
+		public topbanchayResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTS", DbType="Int NOT NULL")]
+		public int MaTS
+		{
+			get
+			{
+				return this._MaTS;
+			}
+			set
+			{
+				if ((this._MaTS != value))
+				{
+					this._MaTS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Tong so luong]", Storage="_Tong_so_luong", DbType="Int")]
+		public System.Nullable<int> Tong_so_luong
+		{
+			get
+			{
+				return this._Tong_so_luong;
+			}
+			set
+			{
+				if ((this._Tong_so_luong != value))
+				{
+					this._Tong_so_luong = value;
+				}
+			}
 		}
 	}
 }
