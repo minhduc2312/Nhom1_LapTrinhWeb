@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TSOnline.Models.TRASUA>
+﻿@model IEnumerable<TSOnline.Models.LoadBannerResult>
 
 @foreach (var item in Model)
 {
@@ -7,13 +7,15 @@
             <div class="col-lg-5 col-md-8">
                 <div class="banner_text">
                     <div class="banner_text_iner">
-                        <h1>
+                        <h1 style="">
                             @item.TenTS
                         </h1>
-                        <p>
-                            @item.Giaban Đ
-                        </p>
-                        <a href="@Url.Action("Details","TraSua",new {id=item.MaTS})" class="btn_2">Details</a>
+                        <h3 style="color: red;">
+                            @item.Giaban VNĐ
+                        </h3>
+                        <h3>@item.TenLoai</h3>
+                        <p>@item.NoiDung</p>
+                        <a href="@Url.Action("Details","TraSua",new {id=item.MaTS})" class="btn_2">Chi Tiết</a>
                     </div>
                 </div>
             </div>

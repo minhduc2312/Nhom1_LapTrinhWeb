@@ -176,7 +176,7 @@ namespace MvcBookStore.Controllers
             data.SubmitChanges();
             Session["Giohang"] = null;
  
-            return RedirectToAction("Index", "TraSua");
+            return RedirectToAction("Xacnhandonhang", "GioHang");
         }
         public ActionResult Xacnhandonhang()
         {

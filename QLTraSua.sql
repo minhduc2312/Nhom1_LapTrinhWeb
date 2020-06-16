@@ -70,13 +70,8 @@ INSERT LOAI(TenLOAI) VALUES (N'Thức uống đá xay')
 INSERT LOAI(TenLOAI) VALUES (N'Topping')
 
 INSERT KHACHHANG (Hoten, DiachiKH, DienthoaiKH, Taikhoan, Matkhau, Ngaysinh, Email)
-VALUES (N'Dương Thành Phết', N'12 Trần Huy Liệu', N'0918062755', N'thayphet.net', N'123456', '08/20/1976', 'phetcm@hgmail.com')
-INSERT KHACHHANG (Hoten, DiachiKH, DienthoaiKH, Taikhoan, Matkhau, Ngaysinh, Email) 
-VALUES (N'Nguyễn Tiến Luân', N'21 Quận 6', N'0917654310', N'thang', N'123456', '10/15/1990', N'ntluan@hcmuns.edu.vn')
-INSERT KHACHHANG (Hoten, DiachiKH, DienthoaiKH, Taikhoan, Matkhau, Ngaysinh, Email) 
-VALUES (N'Đặng Quốc Hòa', N'32 Sư Vạn Hạnh', N'098713245', N'dqhoa', N'hoa', '05/21/1991', N'dqhoa@hcmuns.edu.vn')
-INSERT KHACHHANG (Hoten, DiachiKH, DienthoaiKH, Taikhoan, Matkhau, Ngaysinh, Email) 
-VALUES (N'Ngô Ngọc Ngân', N'12 Khu chung cư', N'0918544699', N'nnngan', N'ngan', '10/12/1986', N'nnngan@hcmuns.edu.vn')
+VALUES (N'KhachHang', N'12 Trần Huy Liệu', N'0918062755', N'khachhang', N'123456', '08/20/1976', 'phetcm@hgmail.com')
+
 
 
 
@@ -142,5 +137,4 @@ Create Table Admin
 	Hoten nVarchar(50)
 )
 go
-Insert into Admin values('admin','123456',N'Nguyễn Đắc Thịnh')
-Insert into Admin values('user','654321',N'Đặng Chi Thái')
+Insert into Admin values('admin','admin',N'Minh Đức')

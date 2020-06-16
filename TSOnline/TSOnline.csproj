@@ -494,7 +494,6 @@
     <Content Include="Views\Admin\sua.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Views\TraSua\List_Banner.cshtml" />
     <Content Include="Views\TraSua\DS_Loai.cshtml" />
     <Content Include="Views\TraSua\GetTop.cshtml" />
     <Content Include="Views\TraSua\Related.cshtml" />
@@ -502,6 +501,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Category_Partialview.cshtml" />
     <Content Include="Views\Shared\_LayoutCategory.cshtml" />
+    <Content Include="Views\TraSua\List_Banner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2438,6 +2438,7 @@ ul {
 .banner_part .single_banner_slider .banner_text .banner_text_iner {
   display: table-cell;
   vertical-align: middle;
+  padding-top:100px;
 }
 
 @media (max-width: 991px) {

@@ -206,6 +206,11 @@ namespace TSOnline.Controllers
                 return RedirectToAction("TraSua");
             }
         }
+        public ActionResult LoadDoanhThu(DateTime ngaybatdau,DateTime ngayketthuc)
+        {
+            long doanhthu = long.Parse(data.DoanhThu(ngaybatdau,ngayketthuc).FirstOrDefault());
+            return PartialView();
+        }
 
     }
 }
